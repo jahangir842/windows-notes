@@ -1,0 +1,63 @@
+*******************************************************************
+		ADDLOCAL
+*******************************************************************
+
+
+The `ADDLOCAL` parameter is used in the context of Windows Installer (MSI) packages to specify which features should be installed locally on the system. It's commonly used during silent or unattended installations to control the installation options without user interaction. 
+*******************************************************************
+In the command `"C:\jdk.exe" /s ADDLOCAL="ToolsFeature" INSTALLDIR="%JAVA_HOME%"`, `ADDLOCAL="ToolsFeature"` is telling the installer to include a specific set of features identified by `ToolsFeature`.
+
+Here's a more detailed breakdown of `ADDLOCAL` and how it is used:
+
+ADDLOCAL`
+
+- **Purpose**: Specifies which features to install locally.
+- **Usage**: `ADDLOCAL=<Feature1>,<Feature2>,...`
+  - Each feature is separated by a comma.
+  - Features must be predefined in the MSI package by the software vendor.
+
+Example Use Case
+
+If you have an MSI package that offers multiple features such as the main application, documentation, and tools, you can control which ones are installed:
+
+- **Feature List**: Suppose an installer has the following features:
+  - `MainApp`
+  - `Documentation`
+  - `ToolsFeature`
+  - `Samples`
+
+- **Install Only MainApp and Tools**:
+
+  msiexec /i "C:\path\to\installer.msi" /qn ADDLOCAL="MainApp,ToolsFeature" INSTALLDIR="C:\Installation\Path"
+
+
+Applying this to the JDK Installation
+
+In the context of the JDK installer, `ADDLOCAL="ToolsFeature"` means that the installer will only install the set of tools associated with the `ToolsFeature`. This typically includes:
+
+- The Java compiler (`javac`)
+- The Java archive tool (`jar`)
+- Other development tools included with the JDK
+
+Common Scenarios
+
+- **Silent Installations**: `ADDLOCAL` is particularly useful for automated deployments where no user interface is displayed (`/s` or `/qn` options for silent or quiet installations).
+- **Custom Installations**: Allows administrators to tailor installations to include only the necessary components, saving disk space and reducing installation time.
+
+Practical Example
+
+1. **Set the `JAVA_HOME` Environment Variable**:
+ 
+   setx JAVA_HOME "C:\Program Files\Java\jdk-17"
+ 
+
+2. **Run the JDK Installer with Specific Features**:
+ 
+   "C:\jdk.exe" /s ADDLOCAL="ToolsFeature" INSTALLDIR="%JAVA_HOME%"
+ 
+
+In this example, only the tools feature of the JDK will be installed silently into the directory specified by `%JAVA_HOME%`.
+
+Summary
+
+`ADDLOCAL` is a powerful parameter for customizing the installation of software packages. By specifying which features to install, it provides granular control over the installation process, making it suitable for both manual and automated setups.

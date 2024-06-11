@@ -1,0 +1,19 @@
+**************************************************************
+		       start
+**************************************************************
+
+The The start command in Windows is used to open a new command prompt window or launch a new process. Here's the breakdown of the command you provided:
+
+**************************************************************
+start "" "C:\jdk.exe" /s ADDLOCAL="ToolsFeature" INSTALLDIR="%JAVA_HOME%" /L "%JAVA_HOME%\jdk.log"
+**************************************************************
+start: This is the command to start a new process or open a new command prompt window.
+
+"": This part specifies the window title for the new process. In this case, it's empty (""), indicating that no window title will be set. command in Windows is used to open a new command prompt window or launch a new process. Here's the breakdown of the command you provided:
+**************************************************************
+
+
+start "" "C:\jdk.exe" /s ADDLOCAL="ToolsFeature" INSTALLDIR="%JAVA_HOME%" /L "%JAVA_HOME%\jdk.log"
+start: This is the command to start a new process or open a new command prompt window.
+
+"": This part specifies the window title for the new process. In this case, it's empty (""), indicating that no window title will be set.

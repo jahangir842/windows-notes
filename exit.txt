@@ -1,0 +1,14 @@
+***************************************************
+		exit
+***************************************************
+
+
+
+**Termination**: `exit` command ends script execution.
+- **Exit Codes**: Numerical values returned by script; 0 for success, non-zero for errors.
+- **`/b` Option**: Returns exit code to script caller.
+- **Error Handling**: Use `exit /b` to indicate errors.
+- **Reporting Errors**: Exit with appropriate non-zero code to signal errors.
+- **Conventional Codes**: Commonly, 1 for general errors.
+  
+The `exit` command with error codes aids in precise error handling and communication of script statuses.
