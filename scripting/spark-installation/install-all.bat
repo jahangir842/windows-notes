@@ -23,7 +23,7 @@ if not exist "%JAVA_HOME%" (
 
 REM === Install Java JDK ===
 echo Installing Java JDK...
-start "" "%SOFTWARES%\jdk.exe" /s ADDLOCAL="ToolsFeature" INSTALLDIR="%JAVA_HOME%"
+%SOFTWARES%\jdk.exe /s ADDLOCAL="ToolsFeature" INSTALLDIR="%JAVA_HOME%"
 
 echo Installing Python...
 %SOFTWARES%\python.exe /quiet InstallAllUsers=1 PrependPath=1
