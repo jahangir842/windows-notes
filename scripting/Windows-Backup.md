@@ -1,6 +1,7 @@
-### Detailed Procedure to Take a Backup
+### Detailed Procedure to Take a Backup in Windows
 
 This script is a Windows batch file designed to automate the process of backing up files from a remote computer to a local drive.
+Create a batch file e.g. "backup.bat" and write the following code in it:
 
 ```
 @echo off
@@ -18,7 +19,7 @@ set HH=%TIME:~0,2%
 set MN=%TIME:~3,2%
 set Today=%DD%-%MM%-%YYYY%
 mkdir "z:\DailyBackup\CA01\%Today%"
-net use \\CA01\ipc$ /user:admin@it.local paksitan@123
+net use \\CA01\ipc$ /user:admin@it.local password@123
 robocopy \\CA01\Z\WindowsImageBackup\ Z:\DailyBackup\CA01\%Today% /E /XA:H /R:10 /W:10 /LOG:"z:\Scripts\Log\CA01_Log.txt" 
 net use \\CA01\ipc$ /del
 echo.
@@ -34,9 +35,9 @@ TIMEOUT 100
 
 ```
 
-Sure, here’s a detailed procedure for setting up and running the backup script provided, along with an explanation of `robocopy`.
+### Explaination:
 
-### Detailed Procedure to Take a Backup
+Here’s a detailed explaination for setting up and running the backup script provided with `robocopy`.
 
 #### 1. Preparation
 - **Requirements**: Ensure you have administrative access to both the local and remote computers.
