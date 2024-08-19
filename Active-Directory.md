@@ -104,5 +104,11 @@ Understanding these different login methods helps ensure proper access to resour
 
 ---
 
+On the DNS Options page, you’l see an error message stating that there’s no parent zone found and no delegation for your DNS server could be created. Ignore this message and click the “next” button, leaving all the settings at this checkpoint unchanged.
 
+---
+
+NOTE: Whenever you need to add a new forest, make sure that you are logged into the server as the local administrator of that machine. You can always add more domain controllers to your server. However, you must be a member of the domain administrators’ group to be able to do so.
+
+---
 
