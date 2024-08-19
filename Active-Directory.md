@@ -85,4 +85,24 @@ Understanding these different login methods helps ensure proper access to resour
 
 ---
 
+### **Global Catalog in Active Directory**
+
+**Purpose**:
+- **Facilitates Searches**: Provides a searchable index of all objects across the forest.
+- **Supports Logins**: Essential for user logins and cross-domain authentication.
+
+**Functionality**:
+- **Partial Attribute Set**: Contains a subset of attributes for every object in the forest.
+- **Domain Controllers**: At least one per domain should be a Global Catalog server.
+
+**Configuration**:
+- **Enable GC**: In Active Directory Sites and Services, check the "Global Catalog" option for the domain controller.
+
+**Considerations**:
+- **Performance**: GC can impact performance due to replication and indexing.
+- **Availability**: Ensure multiple GC servers for redundancy and efficient directory access.
+
+---
+
+
 
