@@ -1,3 +1,5 @@
+## Windows Active Directory:
+
 ### **Windows Active Directory Files Overview**
 
 #### **1. SYSVOL Folder**
@@ -54,3 +56,33 @@
 - **Local Login**: Necessary for administrative tasks on a local machine, troubleshooting domain login issues, or when a domain is not available. 
 
 Understanding these different login methods helps ensure proper access to resources, whether on a local machine or within a domain environment.
+
+---
+
+### **Active Directory Functional Levels**
+
+**Functional Levels** determine the features and capabilities available in a domain or forest in Active Directory. They specify the minimum Windows Server version required for domain controllers.
+
+#### **1. Domain Functional Level (DFL)**
+- **Purpose**: Controls features within a single domain.
+- **Levels**:
+  - **Windows 2000** to **Windows Server 2022**.
+- **Considerations**:
+  - Raising the level enables new features but requires all domain controllers to use the corresponding Windows Server version.
+  - Once raised, it cannot be downgraded.
+
+#### **2. Forest Functional Level (FFL)**
+- **Purpose**: Controls features across all domains in a forest.
+- **Levels**:
+  - **Windows 2000** to **Windows Server 2022**.
+- **Considerations**:
+  - Raising the level enables forest-wide features and requires all domains to meet the corresponding version.
+  - Once raised, it cannot be downgraded.
+
+#### **Checking and Raising Levels**
+- **Check**: Use Active Directory Users and Computers or PowerShell cmdlets (`Get-ADDomain`, `Get-ADForest`).
+- **Raise**: Use Active Directory Users and Computers or PowerShell cmdlets (`Set-ADDomainMode`, `Set-ADForestMode`).
+
+---
+
+
