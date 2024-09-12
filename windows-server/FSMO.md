@@ -6,13 +6,13 @@
 
 ---
 
-### 1. Overview of FSMO Roles:
+## 1. Overview of FSMO Roles:
 
 FSMO roles are specialized domain controller tasks within an Active Directory environment. There are five FSMO roles divided into two categories: Forest-wide roles and Domain-wide roles.
 
 ---
 
-### 2. Forest-wide FSMO Roles:
+## 2. Forest-wide FSMO Roles:
 
 **a. Schema Master**:
 - **Function**: Manages updates to the AD schema. It is responsible for handling schema modifications and ensuring that all domain controllers in the forest receive schema updates.
@@ -26,7 +26,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### 3. Domain-wide FSMO Roles:
+## 3. Domain-wide FSMO Roles:
 
 **a. PDC Emulator**:
 - **Function**: Acts as a Primary Domain Controller (PDC) for legacy NT4 clients and applications. It also handles password changes and account lockouts, and it is the authoritative time source for the domain.
@@ -38,27 +38,73 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 - **Location**: There is one RID Master per domain.
 - **Management**: Use the `Active Directory Users and Computers` MMC snap-in or PowerShell cmdlets to manage.
 
-**c. **Infrastructure Master**:
+**c. Infrastructure Master**:
 - **Function**: Updates references to objects in other domains. It ensures that object references are correctly updated and maintained across domains.
 - **Location**: There is one Infrastructure Master per domain.
 - **Management**: Use the `Active Directory Users and Computers` MMC snap-in or PowerShell cmdlets to manage.
 
 ---
 
-### 4. Managing FSMO Roles:
+## 4. Managing FSMO Roles:
 
 **a. Checking FSMO Role Holders**:
+
+To check the health and status of FSMO roles in an Active Directory environment, you can use
 - **Command Prompt**:
   ```cmd
   netdom query fsmo
   ```
+Description: This command lists all FSMO role holders in the domain and forest.
+
+  
 - **PowerShell**:
   ```powershell
   Get-ADForest | Select-Object SchemaMaster, DomainNamingMaster
   Get-ADDomain | Select-Object PDCEmulator, RIDMaster, InfrastructureMaster
   ```
 
-**b. Transferring FSMO Roles**:
+ Using Active Directory Tools
+
+a. Active Directory Users and Computers (ADUC):
+
+    Open ADUC:
+        Run dsa.msc to open Active Directory Users and Computers.
+
+    View Operations Masters:
+        Right-click on the domain and select Operations Masters.
+        This window shows the PDC Emulator, RID Master, and Infrastructure Master.
+
+b. Active Directory Domains and Trusts:
+
+    Open AD Domains and Trusts:
+        Run domain.msc to open Active Directory Domains and Trusts.
+
+    View Domain Naming Master:
+        Right-click on the root domain and select Operations Master.
+        This window shows the Domain Naming Master.
+
+c. Active Directory Schema:
+
+    Register Schema Snap-in (if not already registered):
+        Run the following command:
+
+        cmd
+
+    regsvr32 schmmgmt.dll
+
+Open Schema Snap-in:
+
+    Run mmc to open Microsoft Management Console.
+    Go to File > Add/Remove Snap-in, add Active Directory Schema, and click Add.
+
+View Schema Master:
+
+    Right-click on Active Directory Schema and select Operations Master.
+    This window shows the Schema Master.
+
+---
+
+## Transferring FSMO Roles**:
 - **Using MMC Snap-ins**:
   - **Schema Master**: `Active Directory Schema` MMC snap-in.
   - **Domain Naming Master**: `Active Directory Domains and Trusts` MMC snap-in.
@@ -84,7 +130,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### 5. Best Practices:
+## 5. Best Practices:
 
 - **Regular Monitoring**: Regularly check the health and status of FSMO roles.
 - **Redundancy**: Ensure that FSMO roles are not hosted on a single domain controller to avoid single points of failure.
