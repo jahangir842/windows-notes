@@ -130,6 +130,46 @@ View Schema Master:
 
 ---
 
+# **Managing FSMO Roles in Active Directory**
+
+1. **Accessing FSMO Roles:**
+
+   To manage FSMO (Flexible Single Master Operation) roles in Active Directory:
+
+   - Open **Active Directory Users and Computers (ADUC)**.
+   - Right-click on the **Active Directory Domain Controller** name.
+   - Select **Operations Masters** from the context menu.
+
+2. **Operations Masters Dialog:**
+
+   The **Operations Masters** dialog box appears, showing the FSMO roles held by the current domain controller.
+
+   In this dialog, you will see the following FSMO roles:
+
+   - **Schema Master**: Manages updates to the Active Directory schema. There can be only one Schema Master in the forest.
+   - **Domain Naming Master**: Manages changes to the forest-wide domain namespace. There can be only one Domain Naming Master in the forest.
+   - **RID Master**: Allocates pools of unique identifiers (RIDs) to other domain controllers for creating security principals. Each domain has one RID Master.
+   - **PDC Emulator**: Acts as a backup domain controller for legacy systems and manages password changes. Each domain has one PDC Emulator.
+   - **Infrastructure Master**: Updates references to objects in other domains. Each domain has one Infrastructure Master.
+
+3. **Changing FSMO Roles:**
+
+   To transfer or seize FSMO roles:
+
+   - **Transfer**: Use the **Change** button to transfer the role to another domain controller. This is the recommended method when moving roles between operational domain controllers.
+   - **Seize**: This option is used if the current role holder is permanently unavailable. Use it with caution as it can lead to conflicts.
+
+4. **Post-Change Actions:**
+
+   - **Verify**: After changing FSMO roles, verify that the new role holder is functioning correctly.
+   - **Replication**: Ensure that Active Directory replication occurs successfully so that all domain controllers are updated with the new FSMO role holder information.
+
+### **Summary**
+
+To manage FSMO roles, right-click the domain controller in **Active Directory Users and Computers**, select **Operations Masters**, and view or change the roles. The roles include Schema Master, Domain Naming Master, RID Master, PDC Emulator, and Infrastructure Master. Use the **Change** button to transfer roles and the **Seize** button for urgent role changes. Always verify and ensure proper replication after any changes.
+
+---
+
 ## 5. Best Practices:
 
 - **Regular Monitoring**: Regularly check the health and status of FSMO roles.
