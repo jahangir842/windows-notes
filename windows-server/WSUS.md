@@ -1,6 +1,10 @@
+# Windows Server Update Services (WSUS)
+
 **Windows Server Update Services (WSUS)** allows administrators to manage and deploy updates for Microsoft products in a corporate environment. Here’s a guide on how to install and manage a WSUS server on Windows Server:
 
-### **1. Install WSUS Server**
+---
+
+## Install WSUS Server
 
 #### **a. Install WSUS via Server Manager**
 
@@ -31,7 +35,9 @@
    - Review your selections and click **Install**.
    - Once the installation completes, click **Close**.
 
-#### **b. Post-Installation Configuration**
+---
+
+## Post-Installation Configuration
 
 1. **Open WSUS Configuration Wizard**:
    - After installation, the WSUS Configuration Wizard should automatically start. If not, you can manually start it from **Server Manager** > **Tools** > **Windows Server Update Services**.
@@ -47,7 +53,9 @@
 3. **Finish Configuration**:
    - Complete the wizard and click **Finish**.
 
-### **2. Manage WSUS Server**
+---
+
+## Manage WSUS Server
 
 #### **a. WSUS Administration Console**
 
@@ -91,7 +99,9 @@
 2. **Check Event Logs**:
    - Use **Event Viewer** to monitor WSUS-related logs for errors and warnings.
 
-### **3. Troubleshooting WSUS**
+---
+
+## Troubleshooting WSUS**
 
 1. **WSUS Logs**:
    - Review WSUS logs located in `C:\Program Files\Update Services\LogFiles` for issues related to update synchronization and server health.
