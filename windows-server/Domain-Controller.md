@@ -130,6 +130,15 @@ After renaming, ensure that you update any references to the default **Administr
 
 ----
 
+#### **Useful Commands/Shortcuts**:
+1. **sysdm.cpl**: Opens the **System Properties** window, where you can configure system settings such as computer name, domain/workgroup settings, and more.
+   - To access it: Press `Win + R`, type `sysdm.cpl`, and press **Enter**.
+   
+2. **ncpa.cpl**: Opens the **Network Connections** window, where you can view and configure network adapters.
+   - To access it: Press `Win + R`, type `ncpa.cpl`, and press **Enter**.
+
+---
+
 ### Notes on NetBIOS, Computer Name, and Related Concepts
 
 #### **NetBIOS Overview**:
@@ -145,50 +154,116 @@ After renaming, ensure that you update any references to the default **Administr
   - Other essential files needed by domain controllers.
 - The **SYSVOL** folder can typically be found under: `C:\Windows\SYSVOL`.
 
-#### **NTDS and Database Files**:
-- **NTDS** stands for **NT Directory Services**.
-- **NTDS.dit** is the Active Directory database file where all domain information, including user objects, groups, and security policies, is stored.
-  - It is located at `C:\Windows\NTDS\ntds.dit`.
-  - This file contains the entire directory information for the domain, and it is crucial for Active Directory operations.
+### `ntds.dit`: Active Directory Database File**
+- **Purpose**: The `ntds.dit` file is the primary database file for Active Directory, containing all directory data, including user accounts, groups, and other AD objects.
+- **Location**: Found at `C:\Windows\NTDS`.
+- **Functions**:
+  - Stores all Active Directory information and is essential for the operation of AD services.
+  - Handles data like user credentials, computer accounts, and directory service data.
 
-#### **Log Files**:
-- Active Directory uses log files to track changes and transactions made in the **NTDS.dit** database.
-- These logs are stored alongside the database file and are used to maintain database consistency and recover from failures.
-  - Example location: `C:\Windows\NTDS\Logs`.
+### Active Directory Log Files**
+- **Purpose**: These log files track changes and transactions in the Active Directory database, ensuring data integrity and supporting recovery operations.
+- **Location**: Typically stored in `C:\Windows\NTDS`.
+- **Functions**:
+  - **EDB.LOG**: The main transaction log file.
+  - **EDB.CHK**: A checkpoint file that tracks the last transaction committed to the database.
+  - Supports recovery in case of unexpected shutdowns or crashes.
 
 ### **DNS Workload and NetBIOS Login**:
 - **DNS Workload**: When a user logs into a domain, DNS is typically responsible for resolving the domain controller’s IP address. If the DNS server is unavailable, the system might use **NetBIOS** to resolve the name of the domain controller.
 - **Logging in with NetBIOS Name**: When logging into a domain, users can use the **NetBIOS name** of the domain if DNS is unavailable.
   - For example, you can log in as `DOMAIN\Username` (where **DOMAIN** is the NetBIOS name of the domain).
-  
-#### **Local Login vs Domain Login**:
-- **Domain Login**: Uses the domain's DNS or NetBIOS name, as in `DOMAIN\Username`. This login checks the user's credentials against the domain controller.
-- **Local Login**: To log in to the local computer (not using the domain), you can use **.\Username**. This tells the system to check the local security accounts manager (SAM) database instead of the domain.
-  - Example: `.\Administrator` to log in as the local admin.
 
-#### **Useful Commands/Shortcuts**:
-1. **sysdm.cpl**: Opens the **System Properties** window, where you can configure system settings such as computer name, domain/workgroup settings, and more.
-   - To access it: Press `Win + R`, type `sysdm.cpl`, and press **Enter**.
-   
-2. **ncpa.cpl**: Opens the **Network Connections** window, where you can view and configure network adapters.
-   - To access it: Press `Win + R`, type `ncpa.cpl`, and press **Enter**.
+### **Understanding Domain and Local Logins in Windows**
 
-These concepts form the foundation for understanding how domain name resolution, network logins, and Active Directory operate in a Windows Server environment.
+#### **1. Domain Login**
+- **Purpose**: Allows users to authenticate and access resources within a Windows domain managed by Active Directory.
+- **Login Format**: 
+  - **Using Full Domain Name**: `username@domain.com`
+  - **Using NETBIOS Name**: `DOMAIN\username`
+  - **NETBIOS Name**: A shorter, simpler version of the domain name used for compatibility with older systems.
+- **Example**:
+  - **Domain Name**: `example.com`
+  - **NETBIOS Name**: `EXAMPLE`
+  - **Login**: `EXAMPLE\username` or `username@example.com`
 
-----
+#### **2. Local Login**
+- **Purpose**: Allows users to authenticate and access resources on the local machine, independent of any domain.
+- **Login Format**:
+  - **Using Local Machine Name**: `MACHINE_NAME\username`
+  - **Using Local Login Shortcut**: `.\username`
+- **Explanation**:
+  - The `.\` prefix forces Windows to authenticate the user against the local machine's accounts instead of domain accounts.
+  - It is useful when the same username exists both locally and in the domain or when the network is unavailable.
+- **Example**:
+  - **Local Machine Name**: `MACHINE1`
+  - **Login**: `.\username` or `MACHINE1\username`
+
+#### **Use Cases**
+- **Domain Login**: Ideal for accessing shared resources, applications, and settings configured by IT across an organization.
+- **Local Login**: Necessary for administrative tasks on a local machine, troubleshooting domain login issues, or when a domain is not available. 
+
+Understanding these different login methods helps ensure proper access to resources, whether on a local machine or within a domain environment.
+
+---
+
+### **Active Directory Functional Levels**
+
+**Functional Levels** determine the features and capabilities available in a domain or forest in Active Directory. They specify the minimum Windows Server version required for domain controllers.
+
+#### **1. Domain Functional Level (DFL)**
+- **Purpose**: Controls features within a single domain.
+- **Levels**:
+  - **Windows 2000** to **Windows Server 2022**.
+- **Considerations**:
+  - Raising the level enables new features but requires all domain controllers to use the corresponding Windows Server version.
+  - Once raised, it cannot be downgraded.
+
+#### **2. Forest Functional Level (FFL)**
+- **Purpose**: Controls features across all domains in a forest.
+- **Levels**:
+  - **Windows 2000** to **Windows Server 2022**.
+- **Considerations**:
+  - Raising the level enables forest-wide features and requires all domains to meet the corresponding version.
+  - Once raised, it cannot be downgraded.
+
+#### **Checking and Raising Levels**
+- **Check**: Use Active Directory Users and Computers or PowerShell cmdlets (`Get-ADDomain`, `Get-ADForest`).
+- **Raise**: Use Active Directory Users and Computers or PowerShell cmdlets (`Set-ADDomainMode`, `Set-ADForestMode`).
+
+---
+
+### **Global Catalog in Active Directory**
+
+**Purpose**:
+- **Facilitates Searches**: Provides a searchable index of all objects across the forest.
+- **Supports Logins**: Essential for user logins and cross-domain authentication.
+
+**Functionality**:
+- **Partial Attribute Set**: Contains a subset of attributes for every object in the forest.
+- **Domain Controllers**: At least one per domain should be a Global Catalog server.
+
+**Configuration**:
+- **Enable GC**: In Active Directory Sites and Services, check the "Global Catalog" option for the domain controller.
+
+**Considerations**:
+- **Performance**: GC can impact performance due to replication and indexing.
+- **Availability**: Ensure multiple GC servers for redundancy and efficient directory access.
+
+---
+
+On the DNS Options page, you’ll see an error message stating that there’s no parent zone found and no delegation for your DNS server could be created. Ignore this message and click the “next” button, leaving all the settings at this checkpoint unchanged.
+
+---
+
+NOTE: Whenever you need to add a new forest, make sure that you are logged into the server as the local administrator of that machine. You can always add more domain controllers to your server. However, you must be a member of the domain administrators’ group to be able to do so.
+
+---
 
 ## Azure Class Notes:
 
 ***************************************
-dns...console...server....forward and reverse lookup zones
 
-forward corvit.local zone.... its also called forest or domain etc.   and records in it
-
-its self record .... see its fqdn that will be dc01.corvit.local
-
-we can restart this dns server in console...  also stop or pause
-
-active directory... console.... domain that is corvit.local
 
 users container (CN) and builtin container ...?
 
