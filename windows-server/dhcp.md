@@ -49,11 +49,11 @@ To modify scope options in the DHCP console:
 
 In the DHCP console when connected to the DHCP server you wish to manage, expand the IPv4 node, then expand the scope with the options you wish to modify.
 
-Select the Scope Options node.
+Select the **Scope Options** node.
 
-Right-click on Scope Options, then select Configure Options.
+Right-click on **Scope Options**, then select **Configure Options**.
 
 Select the option you want to configure from the list of options.
 To enable or disable a setting, select the checkbox and configure the option.
-To configure the properties of an existing option, right-click on the option, then select Properties.
+To configure the properties of an existing option, right-click on the option, then select **Properties**.
 
