@@ -13,6 +13,10 @@ This automatic discovery ensures the PC knows where to send requests for IP addr
 Install-WindowsFeature DHCP -IncludeManagementTools
 ```
 
+## Open DHCP Management Console:
+
+    On your Windows Server, open the DHCP Management Console by typing **dhcpmgmt.msc** in the Run dialog or through the Server Manager.
+
 ## Autherization
 After successfully installing the DHCP Server role, you need to **authorize** and configure your DHCP server.
 ```
