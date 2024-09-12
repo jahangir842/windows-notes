@@ -68,3 +68,11 @@ Select the option you want to configure from the list of options.
 To enable or disable a setting, select the checkbox and configure the option.
 To configure the properties of an existing option, right-click on the option, then select **Properties**.
 
+## Managing reservations
+
+
+
+To convert an existing DHCP lease to a reservation using the DHCP console, right-click the lease in the **Address Leases** node of a specific Scope and then select **Add to Reservation**.
+
+To create a new reservation for a specific scope, right-click the **Reservations** node of a scope, then select **New Reservation**. You then need to provide a name for the reservation, IP address, and the MAC address associated with the host's NIC.
+
