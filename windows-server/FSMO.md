@@ -65,23 +65,23 @@ Description: This command lists all FSMO role holders in the domain and forest.
 
 ## Using Active Directory Tools
 
-## a. Active Directory Users and Computers (ADUC):
+### Open Active Directory Users and Computers (ADUC):
 
-### Open ADUC:
-        Run dsa.msc to open Active Directory Users and Computers.
+Run dsa.msc to open Active Directory Users and Computers.
 
 ### View Operations Masters:
-        Right-click on the domain and select Operations Masters.
-        This window shows the PDC Emulator, RID Master, and Infrastructure Master.
 
-## b. Active Directory Domains and Trusts:
+Right-click on the domain and select Operations Masters.
+This window shows the PDC Emulator, RID Master, and Infrastructure Master.
+
+## Active Directory Domains and Trusts:
 
 ### Open AD Domains and Trusts:
-        Run domain.msc to open Active Directory Domains and Trusts.
+Run domain.msc to open Active Directory Domains and Trusts.
 
 ### View Domain Naming Master:
-        Right-click on the root domain and select Operations Master.
-        This window shows the Domain Naming Master.
+Right-click on the root domain and select Operations Master.
+This window shows the Domain Naming Master.
 
 ### c. Active Directory Schema:
 
@@ -114,9 +114,9 @@ This window shows the Schema Master.
 Right-click the domain controller holding the role and select **Operations Master** to transfer.
 
 - **Using PowerShell**:
-  ```powershell
-  Move-ADDirectoryServerOperationMasterRole -Identity "NewDC" -OperationMasterRole SchemaMaster, DomainNamingMaster, PDCEmulator, RIDMaster, InfrastructureMaster
-  ```
+```powershell
+Move-ADDirectoryServerOperationMasterRole -Identity "NewDC" -OperationMasterRole SchemaMaster, DomainNamingMaster, PDCEmulator, RIDMaster, InfrastructureMaster
+```
 
 **c. Seizing FSMO Roles**:
 - **When a role holder is unavailable**, use the `ntdsutil` tool to seize the role. This should be done with caution and typically as a last resort.
