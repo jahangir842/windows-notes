@@ -263,3 +263,105 @@ This applies the **Block Executable Files** template to the folder `C:\Data`.
 File Screening is an essential tool to enforce file storage policies on your network, helping to maintain compliance and better manage server resources.
 
 ---
+
+# Storage Reports 
+
+**Storage Reports** help administrators analyze disk usage, identify duplicate files, large files, old files, or files that violate policies. You can generate reports to monitor how storage is being utilized and identify potential issues.
+
+#### Steps to Configure Storage Reports:
+
+**a. Open FSRM**:
+- Open **Server Manager** > **Tools** > **File Server Resource Manager**.
+
+**b. Access Storage Reports**:
+- In the **FSRM** console, expand **Storage Reports Management**.
+
+**c. Create a New Report**:
+1. Right-click **Storage Reports Management** and select **Schedule a New Report Task** (for recurring reports) or **Generate Reports Now** (for a one-time report).
+2. Select the folder or volume where you want to generate the report.
+3. Choose which reports you want to generate. Available report types include:
+   - **Duplicate Files**: Finds duplicate files in the selected folder/volume.
+   - **File Screening Audit**: Displays files that violated file screening policies.
+   - **Large Files**: Identifies files that exceed a specified size.
+   - **Files by File Group**: Organizes files by type.
+   - **Least Recently Accessed Files**: Identifies files that haven’t been accessed in a long time.
+4. Configure the **report format** (HTML, CSV, XML, etc.).
+5. Set **delivery options** if you want the reports emailed automatically.
+6. Click **OK** to generate or schedule the report.
+
+#### Automating Reports:
+- You can schedule reports to run at regular intervals by configuring the **Schedule a New Report Task** option and setting the frequency (daily, weekly, monthly).
+
+---
+
+# File Classification
+
+**File Classification** enables automatic classification of files based on rules that you define. This can help organize files based on content, size, or other metadata and tag them for actions such as archiving or policy enforcement.
+
+#### Steps to Set Up File Classification:
+
+**a. Access File Classification**:
+- In the **FSRM** console, expand **Classification Management**.
+
+**b. Create Classification Properties**:
+1. Select **Classification Properties**, then right-click and choose **Create Classification Property**.
+2. Define the property (e.g., **Confidential**, **File Type**, **Retention Period**).
+
+**c. Create Classification Rules**:
+1. In the **FSRM** console, right-click **Classification Rules** and select **Create Classification Rule**.
+2. Name the rule and define the scope (folders/volumes) where the rule will apply.
+3. In the **Classification Parameters**, select the property that will be assigned.
+4. Define the **classification method**:
+   - **Content Classification**: Tags files based on their content.
+   - **Folder Classification**: Tags all files in a specific folder.
+5. Set conditions (e.g., classify files over a certain size, last accessed within a certain period, etc.).
+6. Click **OK** to apply the rule.
+
+#### Running Classification:
+- Once the rules are defined, you can run classification manually or schedule it to run automatically.
+
+---
+
+# Automated File Management Tasks 
+
+Automated File Management Tasks allow administrators to configure specific actions to be taken on files based on classification, attributes, or conditions. For instance, you can automatically move, archive, or delete files that meet certain criteria.
+
+#### Steps to Set Up Automated File Management Tasks:
+
+**a. Open Automated Management Tasks**:
+- In the **FSRM** console, go to **File Management Tasks** under **Classification Management**.
+
+**b. Create a New Task**:
+1. Right-click **File Management Tasks** and select **Create File Management Task**.
+2. Name the task (e.g., **Archive Old Files**).
+3. Define the **scope** (folders/volumes) that the task will apply to.
+4. Set **conditions** for the files the task will apply to, such as:
+   - **Files older than 365 days**.
+   - **Files classified as Confidential**.
+   - **Files larger than a certain size**.
+5. Choose the **action** to take:
+   - **Move files** to another folder or archive location.
+   - **Delete files**.
+   - **Expire files** based on retention policies.
+6. Set the **schedule** for when the task should run (e.g., weekly, monthly).
+7. Configure **notifications** to alert administrators when the task is executed.
+8. Click **OK** to save the task.
+
+---
+
+### **Key Use Cases**:
+
+- **Storage Reports**: Monitor storage usage, identify wasted space, or enforce policies on old and large files.
+- **File Classification**: Automatically categorize files based on metadata, making it easier to enforce data governance and retention policies.
+- **Automated File Management**: Move, delete, or archive files based on their age, size, or classification properties without manual intervention.
+
+---
+
+### **Benefits of Using FSRM for Storage Management**:
+
+- **Data Organization**: Helps maintain an organized file system with proper file classifications.
+- **Improved Storage Efficiency**: Helps identify areas where storage can be optimized by removing duplicates, archiving old data, and managing large files.
+- **Policy Enforcement**: Automates file screening, file classification, and storage reporting to ensure compliance with organizational data policies.
+- **Automated Actions**: Reduces manual file management tasks by automating the movement, archiving, or deletion of files based on preset rules.
+
+These features of FSRM streamline the management of file servers, making it easier for administrators to monitor, classify, and manage large volumes of data.
