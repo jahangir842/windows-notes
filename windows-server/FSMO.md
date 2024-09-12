@@ -26,7 +26,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### 3. **Domain-wide FSMO Roles:
+### 3. Domain-wide FSMO Roles:
 
 **a. PDC Emulator**:
 - **Function**: Acts as a Primary Domain Controller (PDC) for legacy NT4 clients and applications. It also handles password changes and account lockouts, and it is the authoritative time source for the domain.
@@ -45,7 +45,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### 4. **Managing FSMO Roles:
+### 4. Managing FSMO Roles:
 
 **a. Checking FSMO Role Holders**:
 - **Command Prompt**:
