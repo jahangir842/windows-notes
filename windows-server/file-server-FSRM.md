@@ -1,4 +1,4 @@
-### **File Server Resource Manager (FSRM)**
+# File Server Resource Manager (FSRM)
 
 **File Server Resource Manager (FSRM)** is a feature in Windows Server that allows administrators to manage and control the amount and type of data stored on file servers. It provides a set of tools to configure quotas, file screens, storage reports, and classify files, enabling better storage utilization and data management.
 
@@ -41,7 +41,7 @@
 
 ----
 
-## **Installation of FSRM**:
+# **Installation of FSRM**:
 
 To install **File Server Resource Manager (FSRM)** on a Windows Server, follow these steps:
 
@@ -108,7 +108,7 @@ This is how you can install **File Server Resource Manager (FSRM)** on a Windows
 
 ----
 
-## Quota Management
+# Quota Management
 
 **Quota Management** in **File Server Resource Manager (FSRM)** allows you to manage disk space usage by setting limits on the amount of data that can be stored in specific folders or volumes. This helps to prevent overuse of storage resources and ensures that users don't exceed their allotted space.
 
