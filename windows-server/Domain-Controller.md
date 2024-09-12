@@ -1,4 +1,80 @@
-guide
+## Active Directory Domain Services (AD DS)
+
+To install **Active Directory Domain Services (AD DS)** on a Windows Server, follow these steps:
+
+### 1. **Install AD DS Using Server Manager**
+
+1. **Open Server Manager**:
+   - Press `Win + R`, type `ServerManager`, and press **Enter**.
+
+2. **Add Roles and Features**:
+   - In **Server Manager**, click **Manage** in the top-right corner, and select **Add Roles and Features**.
+
+3. **Select Installation Type**:
+   - In the **Add Roles and Features Wizard**, select **Role-based or feature-based installation**, and click **Next**.
+
+4. **Choose the Server**:
+   - Select the server on which you want to install AD DS, then click **Next**.
+
+5. **Select Server Roles**:
+   - On the **Server Roles** page, check the box for **Active Directory Domain Services**. When prompted to add required features, click **Add Features**, then click **Next**.
+
+6. **Select Features**:
+   - On the **Features** page, you can select additional features if needed. Typically, you can just click **Next** without adding anything here.
+
+7. **Review AD DS Information**:
+   - Review the information about **AD DS** and click **Next**.
+
+8. **Confirm and Install**:
+   - On the **Confirmation** page, review your selections, then click **Install**.
+
+   The installation will begin. Once completed, the next step is to configure your server to become a Domain Controller.
+
+### 2. **Promote the Server to a Domain Controller**
+
+After AD DS is installed, you need to promote the server to a Domain Controller.
+
+1. **Open the AD DS Post-Deployment Configuration**:
+   - Once the installation is complete, click the **Promote this server to a domain controller** link in **Server Manager**.
+
+2. **Deployment Configuration**:
+   - In the **Deployment Configuration** window, choose one of the following options:
+     - **Add a new forest** if this is the first Domain Controller in your environment.
+     - **Add a domain controller to an existing domain** if a domain already exists.
+
+   Enter the **Root domain name** (for a new forest) or choose the existing domain (for additional DC), and click **Next**.
+
+3. **Domain Controller Options**:
+   - On the **Domain Controller Options** page, select the appropriate options:
+     - **Domain Name System (DNS) server** is selected by default.
+     - Set a **Directory Services Restore Mode (DSRM) password**, then click **Next**.
+
+4. **DNS Delegation**:
+   - If you're adding a new forest, you may get a warning about DNS delegation. You can ignore this and click **Next**.
+
+5. **Additional Options**:
+   - On the **Additional Options** page, ensure the **NetBIOS domain name** is correct and click **Next**.
+
+6. **Paths**:
+   - Specify the **Database**, **Log Files**, and **SYSVOL** paths, or leave the default locations. Click **Next**.
+
+7. **Review and Install**:
+   - Review all the configuration settings on the **Review Options** page, then click **Next**.
+
+8. **Prerequisites Check**:
+   - The system will perform a prerequisites check. Once the check completes successfully, click **Install**.
+
+### 3. **Reboot the Server**
+
+After the installation and configuration process, the server will automatically reboot. Once it restarts, the server will be promoted as a Domain Controller.
+
+### 4. **Verify AD DS Installation**
+
+To ensure AD DS is installed and running:
+- Open **Server Manager** and verify that **Active Directory Domain Services** appears in the left pane under **Roles and Features**.
+- Open **Active Directory Users and Computers** by typing `dsa.msc` in the **Run** dialog to manage your domain.
+
+Now your Windows Server is installed with Active Directory Domain Services and is configured as a Domain Controller.
 
 ----
 
@@ -54,18 +130,55 @@ After renaming, ensure that you update any references to the default **Administr
 
 ----
 
+### Notes on NetBIOS, Computer Name, and Related Concepts
+
+#### **NetBIOS Overview**:
+- **NetBIOS (Network Basic Input/Output System)** is a protocol that allows applications on different computers to communicate within a local area network (LAN). 
+- **Computer Name (NetBIOS Name)**: This is a unique identifier for each computer on the network. It allows computers to be identified and communicate in networks without requiring DNS.
+- **When DNS Fails**: If **DNS** (Domain Name System) is unresponsive, **NetBIOS** provides a fallback mechanism for identifying computers on the network using their **NetBIOS names**.
+  - For example, when a domain-joined PC tries to resolve names for network resources, it will use DNS first. If DNS doesn't respond, NetBIOS can step in to provide name resolution.
+
+#### **SYSVOL Folder**:
+- **SYSVOL** is a shared directory that stores domain-wide files that are replicated between domain controllers. It primarily contains:
+  - Group Policy templates (GPOs)
+  - Login scripts
+  - Other essential files needed by domain controllers.
+- The **SYSVOL** folder can typically be found under: `C:\Windows\SYSVOL`.
+
+#### **NTDS and Database Files**:
+- **NTDS** stands for **NT Directory Services**.
+- **NTDS.dit** is the Active Directory database file where all domain information, including user objects, groups, and security policies, is stored.
+  - It is located at `C:\Windows\NTDS\ntds.dit`.
+  - This file contains the entire directory information for the domain, and it is crucial for Active Directory operations.
+
+#### **Log Files**:
+- Active Directory uses log files to track changes and transactions made in the **NTDS.dit** database.
+- These logs are stored alongside the database file and are used to maintain database consistency and recover from failures.
+  - Example location: `C:\Windows\NTDS\Logs`.
+
+### **DNS Workload and NetBIOS Login**:
+- **DNS Workload**: When a user logs into a domain, DNS is typically responsible for resolving the domain controller’s IP address. If the DNS server is unavailable, the system might use **NetBIOS** to resolve the name of the domain controller.
+- **Logging in with NetBIOS Name**: When logging into a domain, users can use the **NetBIOS name** of the domain if DNS is unavailable.
+  - For example, you can log in as `DOMAIN\Username` (where **DOMAIN** is the NetBIOS name of the domain).
+  
+#### **Local Login vs Domain Login**:
+- **Domain Login**: Uses the domain's DNS or NetBIOS name, as in `DOMAIN\Username`. This login checks the user's credentials against the domain controller.
+- **Local Login**: To log in to the local computer (not using the domain), you can use **.\Username**. This tells the system to check the local security accounts manager (SAM) database instead of the domain.
+  - Example: `.\Administrator` to log in as the local admin.
+
+#### **Useful Commands/Shortcuts**:
+1. **sysdm.cpl**: Opens the **System Properties** window, where you can configure system settings such as computer name, domain/workgroup settings, and more.
+   - To access it: Press `Win + R`, type `sysdm.cpl`, and press **Enter**.
+   
+2. **ncpa.cpl**: Opens the **Network Connections** window, where you can view and configure network adapters.
+   - To access it: Press `Win + R`, type `ncpa.cpl`, and press **Enter**.
+
+These concepts form the foundation for understanding how domain name resolution, network logins, and Active Directory operate in a Windows Server environment.
+
+----
+
 ## Azure Class Notes:
 
-netbios - computer name, when dns not respond, netbios respond.
-
-sysdm.cpl
-ncpa.cpl
-
-SYSVOL file
-Database file NTDS  ---- ntds.dit (database file.....c:\windows\NTDS)
-log file
-
-dns workload,,,, login with netbios name(domain login) ,,,, login with .\ (local login) 
 ***************************************
 dns...console...server....forward and reverse lookup zones
 
