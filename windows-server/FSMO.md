@@ -1,16 +1,18 @@
+# Flexible Single Master Operations (FSMO)
+
 **Flexible Single Master Operations (FSMO)** roles are critical components in the management and operation of an Active Directory (AD) environment. These roles ensure that certain domain-wide operations are performed in a consistent manner across the domain and forest.
 
-### **Key Points About FSMO Roles**
+### Key Points About FSMO Roles
 
 ---
 
-### **1. **Overview of FSMO Roles**:
+### 1. **Overview of FSMO Roles:
 
 FSMO roles are specialized domain controller tasks within an Active Directory environment. There are five FSMO roles divided into two categories: Forest-wide roles and Domain-wide roles.
 
 ---
 
-### **2. **Forest-wide FSMO Roles**:
+### 2. **Forest-wide FSMO Roles:
 
 **a. **Schema Master**:
 - **Function**: Manages updates to the AD schema. It is responsible for handling schema modifications and ensuring that all domain controllers in the forest receive schema updates.
@@ -24,7 +26,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### **3. **Domain-wide FSMO Roles**:
+### 3. **Domain-wide FSMO Roles:
 
 **a. **PDC Emulator**:
 - **Function**: Acts as a Primary Domain Controller (PDC) for legacy NT4 clients and applications. It also handles password changes and account lockouts, and it is the authoritative time source for the domain.
@@ -43,7 +45,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### **4. **Managing FSMO Roles**:
+### 4. **Managing FSMO Roles:
 
 **a. **Checking FSMO Role Holders**:
 - **Command Prompt**:
@@ -82,7 +84,7 @@ FSMO roles are specialized domain controller tasks within an Active Directory en
 
 ---
 
-### **5. **Best Practices**:
+### 5. **Best Practices:
 
 - **Regular Monitoring**: Regularly check the health and status of FSMO roles.
 - **Redundancy**: Ensure that FSMO roles are not hosted on a single domain controller to avoid single points of failure.
