@@ -7,6 +7,13 @@ This automatic discovery ensures the PC knows where to send requests for IP addr
 
 ----
 
+## Determining the Scope that a User Gets
+When a user logs in to a network using an Active Directory (AD) user ID, the process of determining which DHCP scope should provide an IP address is primarily driven by the client's network configuration and DHCP server setup. 
+
+The DHCP server determines which scope to use based on the network segment or subnet that the client is connected to. Active Directory authentication does not affect this process; instead, it relies on proper network and DHCP server configuration to ensure that clients receive IP addresses from the appropriate scope based on their location in the network.
+
+----
+
 ## Install the DHCP Server
 
 ```
