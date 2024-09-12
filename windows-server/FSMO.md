@@ -63,54 +63,55 @@ Description: This command lists all FSMO role holders in the domain and forest.
   Get-ADDomain | Select-Object PDCEmulator, RIDMaster, InfrastructureMaster
   ```
 
- Using Active Directory Tools
+## Using Active Directory Tools
 
-a. Active Directory Users and Computers (ADUC):
+## a. Active Directory Users and Computers (ADUC):
 
-    Open ADUC:
+###vOpen ADUC:
         Run dsa.msc to open Active Directory Users and Computers.
 
-    View Operations Masters:
+### View Operations Masters:
         Right-click on the domain and select Operations Masters.
         This window shows the PDC Emulator, RID Master, and Infrastructure Master.
 
-b. Active Directory Domains and Trusts:
+## b. Active Directory Domains and Trusts:
 
-    Open AD Domains and Trusts:
+### Open AD Domains and Trusts:
         Run domain.msc to open Active Directory Domains and Trusts.
 
-    View Domain Naming Master:
+### View Domain Naming Master:
         Right-click on the root domain and select Operations Master.
         This window shows the Domain Naming Master.
 
-c. Active Directory Schema:
+### c. Active Directory Schema:
 
-    Register Schema Snap-in (if not already registered):
-        Run the following command:
+Register Schema Snap-in (if not already registered):
+Run the following command:
 
-        cmd
+```
+regsvr32 schmmgmt.dll
+```
 
-    regsvr32 schmmgmt.dll
+## Open Schema Snap-in:
 
-Open Schema Snap-in:
+Run **mmc** to open Microsoft Management Console.
+Go to **File** > **Add/Remove Snap-in**, add **Active Directory Schema**, and click **Add**.
 
-    Run mmc to open Microsoft Management Console.
-    Go to File > Add/Remove Snap-in, add Active Directory Schema, and click Add.
+## View Schema Master:
 
-View Schema Master:
-
-    Right-click on Active Directory Schema and select Operations Master.
-    This window shows the Schema Master.
+Right-click on Active Directory Schema and select Operations Master.
+This window shows the Schema Master.
 
 ---
 
 ## Transferring FSMO Roles**:
+
 - **Using MMC Snap-ins**:
   - **Schema Master**: `Active Directory Schema` MMC snap-in.
   - **Domain Naming Master**: `Active Directory Domains and Trusts` MMC snap-in.
   - **PDC Emulator, RID Master, and Infrastructure Master**: `Active Directory Users and Computers` MMC snap-in.
   
-  Right-click the domain controller holding the role and select **Operations Master** to transfer.
+Right-click the domain controller holding the role and select **Operations Master** to transfer.
 
 - **Using PowerShell**:
   ```powershell
