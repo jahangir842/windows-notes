@@ -40,3 +40,20 @@ E.g. To configure a new DHCP scope named Contoso network with a range from 10.10
 ```
 Add-DhcpServerv4Scope -Name "Contoso network" -StartRange 10.10.10.100 -EndRange 10.10.10.200 -SubnetMask 255.255.255.0
 ```
+
+## Managing scope options
+
+After configuring your new scope, you can manage scope options.
+
+To modify scope options in the DHCP console:
+
+In the DHCP console when connected to the DHCP server you wish to manage, expand the IPv4 node, then expand the scope with the options you wish to modify.
+
+Select the Scope Options node.
+
+Right-click on Scope Options, then select Configure Options.
+
+Select the option you want to configure from the list of options.
+To enable or disable a setting, select the checkbox and configure the option.
+To configure the properties of an existing option, right-click on the option, then select Properties.
+
