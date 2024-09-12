@@ -7,3 +7,8 @@ This automatic discovery ensures the PC knows where to send requests for IP addr
 
 ----
 
+Install the DHCP Server
+
+```
+Install-WindowsFeature DHCP -IncludeManagementTools
+```
