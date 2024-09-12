@@ -26,12 +26,12 @@ Get-DhcpServerInDC
 
 ### To authorize the DHCP server using Active Directory:
 
-From the Windows desktop, open the Start menu, select Windows Administrative Tools > DHCP.
-Expand your DHCP server name, right-click, then select Authorize.
+Open  Windows Administrative Tools > DHCP.
+Expand your DHCP server name, right-click, and then select Authorize.
 Authorization can take a few seconds to resolve. Refresh the server list to confirm that the DHCP Server is now authorized. If authorized, a green icon should appear in each scope.
 
 ## Create Scope:
-create a new scope using the Add-DhcpServerv4Scope PowerShell command.
+create a new scope using the **Add-DhcpServerv4Scope** PowerShell command.
 
 You can just run PowerShell on your computer in an elevated session.
 
