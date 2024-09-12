@@ -67,7 +67,7 @@ Description: This command lists all FSMO role holders in the domain and forest.
 
 ## a. Active Directory Users and Computers (ADUC):
 
-###vOpen ADUC:
+### Open ADUC:
         Run dsa.msc to open Active Directory Users and Computers.
 
 ### View Operations Masters:
