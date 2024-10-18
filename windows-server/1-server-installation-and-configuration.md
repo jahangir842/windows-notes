@@ -1,58 +1,19 @@
-### Windows Server Installation and Basic Configuration Guide
+### **Installing Windows Server**
 
-This guide explains how to install **Windows Server**, perform basic configurations like setting up IP addresses, firewall settings, and discusses why it’s often recommended to disable **Internet Explorer Enhanced Security Configuration (IE ESC)** in server environments.
+### **Download Windows Server ISO**:
+   - Download the latest Windows Server ISO from Microsoft (either the **evaluation version** or the **full version** if you have a license).
 
----
-
-### 1. **Installing Windows Server**
-
-1. **Download Windows Server ISO**:
-   - Download the latest Windows Server ISO from Microsoft (either the **evaluation** version or the full version if you have a license).
-
-2. **Boot from ISO**:
-   - Create a bootable USB or mount the ISO if you are installing on a VM (e.g., using VMware or Hyper-V).
-   - Boot from the ISO and follow the installation prompts.
-
-3. **Select Installation Type**:
+### **Select Installation Type**:
    - **Server with Desktop Experience**: Includes a GUI (Graphical User Interface).
-   - **Server Core**: Minimal installation without GUI for a smaller footprint and reduced attack surface.
-   
-   Most users prefer **Server with Desktop Experience** if they are new to Windows Server administration.
-
-4. **Partition the Disk**:
-   - Choose your desired partitioning scheme or use the default settings.
-   - Continue with the installation process.
-
-5. **Set Administrator Password**:
-   - After installation, you will be prompted to set the administrator password. Make sure it meets complexity requirements (uppercase, lowercase, numbers, special characters).
-
-6. **Log in to the Server**:
-   - Once installation is complete, log in using the administrator account you created.
+   - **Server Core**: Minimal installation without GUI for a smaller footprint and reduced attack surface. 
 
 ---
 
-### 2. **Basic Configuration**
+### **Basic Configuration**
 
-#### 2.1 **Set a Static IP Address**
+### **Set a Static IP Address**
 
 By default, Windows Server gets an IP via DHCP. For most server roles, you’ll want to assign a **static IP**.
-
-1. **Open Server Manager**:
-   - On the Server Manager Dashboard, click on `Local Server`.
-
-2. **Configure IP Address**:
-   - Click on the Ethernet adapter (usually called `Ethernet0` or `Ethernet1`).
-   - In the **Network and Sharing Center**, click `Change adapter settings`.
-   - Right-click on your network adapter and choose `Properties`.
-   - Select `Internet Protocol Version 4 (TCP/IPv4)` and click `Properties`.
-   - Set your **static IP**, **Subnet Mask**, **Default Gateway**, and **DNS Servers**.
-
-3. **Verify Configuration**:
-   - Open Command Prompt and run:
-     ```bash
-     ipconfig
-     ```
-   - Ensure that your static IP is correctly configured.
 
 ---
 
@@ -85,7 +46,7 @@ By default, **Windows Defender Firewall** is enabled to secure your server. You 
 
 ---
 
-### 3. **Disabling Internet Explorer Enhanced Security Configuration (IE ESC)**
+### **Disabling Internet Explorer Enhanced Security Configuration (IE ESC)**
 
 **Internet Explorer Enhanced Security Configuration (IE ESC)** is a security feature in Windows Server that restricts browsing to untrusted websites. While useful in locking down the server, it can also make accessing web applications and downloading files more difficult during configuration or administration.
 
