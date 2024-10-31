@@ -92,3 +92,16 @@ Make sure you are using a genuine and valid version of Windows to avoid ongoing 
 
 
 ---
+
+Yes, you typically need an internet connection to activate Windows 10 using a product key. The activation process checks with Microsoft's servers to validate the key and confirm that it hasn’t been used on another device.
+
+### Alternatives:
+- **Phone Activation**: If you don’t have internet access, you can use the phone activation method. This usually involves calling a Microsoft support number and following the automated prompts to activate using your key.
+
+### Steps for Phone Activation:
+1. Go to **Settings** > **Update & Security** > **Activation**.
+2. Click on **Activate by Phone** (if available).
+3. Follow the prompts to get the activation ID and enter it during the call.
+
+Having an internet connection is the simplest and quickest method, though!
+
