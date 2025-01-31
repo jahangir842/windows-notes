@@ -1,5 +1,7 @@
 ## Activate with IRM
 
+Open Powershell as Administrator and run the following command to lauch the activate process:
+
 ```BASH
 irm https://massgrave.dev/get | iex
 ```
