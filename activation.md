@@ -1,4 +1,9 @@
-Sure! Here’s the content formatted as concise notes:
+## Activate with IRM
+
+```BASH
+irm https://massgrave.dev/get | iex
+```
+Blog: [Sure! Here’s the content formatted as concise notes:](https://medium.com/@alexads108/activate-windows-with-one-command-no-need-to-look-for-the-activation-tool-activation-code-anymore-b73b5c1fd8d5)
 
 ---
 
