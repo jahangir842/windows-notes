@@ -7,7 +7,7 @@ Open Powershell as Administrator and run the following command to lauch the acti
 ```BASH
 irm https://massgrave.dev/get | iex
 ```
-Blog: [Blog:](https://medium.com/@alexads108/activate-windows-with-one-command-no-need-to-look-for-the-activation-tool-activation-code-anymore-b73b5c1fd8d5)
+Blog: [activate-windows-with-one-command:](https://medium.com/@alexads108/activate-windows-with-one-command-no-need-to-look-for-the-activation-tool-activation-code-anymore-b73b5c1fd8d5)
 
 ---
 
