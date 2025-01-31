@@ -1,4 +1,6 @@
-## Activate with IRM
+## Activation Methods
+
+### Activate with IRM
 
 Open Powershell as Administrator and run the following command to lauch the activate process:
 
