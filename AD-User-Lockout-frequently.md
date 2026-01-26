@@ -58,6 +58,11 @@
 * **Issue:** A user might have logged in weeks ago, disconnected (without signing out), and the session is still trying to refresh usage with an old password.
 * **Fix:** Force log off any disconnected sessions for that user.
 
+* Right-click the Taskbar and select Task Manager.
+* Go to the Users tab.
+* Look for the user with the status (Disconnected) next to their icon.
+* Right-click that user and select Sign off.
+
 ---
 
 ### **Phase 3: The Azure & Network Context**
